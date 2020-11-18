@@ -1,0 +1,46 @@
+<h1 class="mt-4">Users</h1>
+<br>
+<div class="table-responsive">
+
+
+
+  <table class="table table-bordered"  width="100%" cellspacing="0">
+      <thead>
+          <tr>
+              <th (click)="sort('id')"># &nbsp; <i class="fa fa-sort"></i></th>
+              <th (click)="sort('nombres')">Name &nbsp; <i class="fa fa-sort"></i></th>
+              <th (click)="sort('apellidos')">Description&nbsp; <i class="fa fa-sort"></i> </th>
+              <th (click)="sort('email')">Email &nbsp; <i class="fa fa-sort"></i></th>
+              <th (click)="sort('direccion')">Address &nbsp; <i class="fa fa-sort"></i> </th>
+              <th (click)="sort('id_operacion')">Code Opt &nbsp; <i class="fa fa-sort"></i> </th>
+              <th>Option</th>
+          </tr>
+      </thead>
+
+      <tbody>
+
+          <tr *ngFor="let us of users | orderBy: key : reverse   | paginate: config">
+
+              <td>{{us.id}}</td>
+              <td>{{ us.nombres }}</td>
+              <td>{{us.apellidos}}</td>
+              <td>{{us.email}}</td>
+              <td>{{us.direccion}}</td>
+              <td>{{us.id_operacion}}</td>
+
+
+              <td>
+
+                  <button class="btn btn-primary" (click)="editUser(us)"> Edit </button>
+                  <button class="btn btn-danger ml-1" (click)="deleteUser(us)"> Delete </button>
+
+              </td>
+          </tr>
+
+      </tbody>
+  </table>
+  <div style="text-align: center;">
+    <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+  </div>
+
+</div>

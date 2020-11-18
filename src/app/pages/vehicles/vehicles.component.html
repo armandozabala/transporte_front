@@ -1,0 +1,50 @@
+<h1 class="mt-4">Vehicles</h1>
+<br>
+<div class="table-responsive">
+
+
+
+  <table class="table table-bordered"  width="100%" cellspacing="0">
+      <thead>
+          <tr>
+              <th (click)="sort('id_vehiculo')"># &nbsp; <i class="fa fa-sort"></i></th>
+              <th (click)="sort('nombres')">Conductor &nbsp; <i class="fa fa-sort"></i></th>
+              <th (click)="sort('id_ruta')">Route &nbsp; <i class="fa fa-sort"></i></th>
+              <th (click)="sort('marca')">Marca &nbsp; <i class="fa fa-sort"></i></th>
+              <th (click)="sort('modelo')">Model&nbsp; <i class="fa fa-sort"></i> </th>
+              <th (click)="sort('plate')">Plate &nbsp; <i class="fa fa-sort"></i></th>
+              <th (click)="sort('direccion')">Fecha SOAT &nbsp; <i class="fa fa-sort"></i> </th>
+              <th (click)="sort('id_operacion')">Fecha Mecanica &nbsp; <i class="fa fa-sort"></i> </th>
+
+              <th>Option</th>
+          </tr>
+      </thead>
+
+      <tbody>
+
+          <tr *ngFor="let us of vehicles | orderBy: key : reverse   | paginate: config">
+
+              <td>{{us.id_vehiculo}}</td>
+              <td>{{ us.nombres }} {{us.apellidos}}</td>
+              <td>{{ us.id_ruta }}</td>
+              <td>{{ us.marca }}</td>
+              <td>{{us.modelo}}</td>
+              <td>{{us.placas}}</td>
+              <td>{{us.fecha_soat | date: 'dd/MM/yyyy'}}</td>
+              <td>{{us.fecha_mecanica | date: 'dd/MM/yyyy'}}</td>
+
+              <td>
+
+                  <button class="btn btn-primary" (click)="editVehicle(us)"> Edit </button>
+                  <button class="btn btn-danger ml-1" (click)="deleteVehicle(us)"> Delete </button>
+
+              </td>
+          </tr>
+
+      </tbody>
+  </table>
+  <div style="text-align: center;">
+    <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+  </div>
+
+</div>
